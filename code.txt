@@ -1,0 +1,27 @@
+import random
+import string
+
+def generate_password(length, use_uppercase=True, use_lowercase=True, use_digits=True, use_symbols=True):
+    characters = ''
+    if use_uppercase:
+        characters += string.ascii_uppercase
+    if use_lowercase:
+        characters += string.ascii_lowercase
+    if use_digits:
+        characters += string.digits
+    if use_symbols:
+        characters += string.punctuation
+
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+def generate_passwords(num_passwords, length, use_uppercase=True, use_lowercase=True, use_digits=True, use_symbols=True):
+    passwords = [generate_password(length, use_uppercase, use_lowercase, use_digits, use_symbols) for _ in range(num_passwords)]
+    return passwords
+
+num_passwords = 10
+password_length = 12
+
+generated_passwords = generate_passwords(num_passwords, password_length)
+for password in generated_passwords:
+    print(password)
